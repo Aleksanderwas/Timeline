@@ -33,14 +33,22 @@
             @endguest
         </div>
     @endif
-    <div>
+    <div class="grid grid-cols-1 text-center pt-12">
         <x-dashboard-elements>
             <div><p class="text-xl text-center">{{ $event->title }}</p></div>
-            <div class="grid grid-cols-2 p-6 text-center">
-                <div><p class="font-bold">Start date:</p> {{$event->start_date}}</div>
-                <div><p class="font-bold">End date:</p> {{$event->end_date}}</div>
-            </div>
         </x-dashboard-elements>
+        <div class="grid grid-cols-2 text-center">
+            <div>
+                <x-dashboard-elements>
+                    <p class="font-bold">Start date:</p> {{$event->start_date}}
+                </x-dashboard-elements>
+            </div>
+            <div>
+                <x-dashboard-elements>
+                    <p class="font-bold">End date:</p> {{$event->end_date}}
+                </x-dashboard-elements>
+            </div>
+        </div>
         <x-dashboard-elements>
             <div><p class="font-bold text-xl">Description:</p> {{$event->description}}</div>
         </x-dashboard-elements>
