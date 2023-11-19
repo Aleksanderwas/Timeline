@@ -55,6 +55,16 @@
         <x-dashboard-elements>
             <div> {{$event->graphics}}</div>
         </x-dashboard-elements>
+        <div>
+            <x-dashboard-elements>
+                <p class="font-bold">Event category:</p> {{$event->category->name}}
+            </x-dashboard-elements>
+        </div>
+        <div>
+            <x-dashboard-elements>
+                <p class="font-bold">Created by:</p> {{$event->user->name}}
+            </x-dashboard-elements>
+        </div>
     </div>
     </body>
     </html>
