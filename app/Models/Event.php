@@ -9,11 +9,23 @@ class Event extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = [
+        'title',
+        'start_date',
+        'end_date',
+        'description',
+        'graphics',
+        'category_id'
+    ];
+
+
     public function category() {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function user() {
         return $this->belongsTo(User::class, 'created_by');
     }
+
 }
