@@ -65,7 +65,9 @@ class EventController extends Controller
         $event->end_date = $request['end_date'];
         $event->description = $request['description'];
         $event->created_by = auth()->user()->id;
-        $this->add_graphics($event, $request);
+        if(isset($request['graphics'])) {
+            $this->add_graphics($event, $request);
+        }
         $event->save();
 
         return redirect()->back()->with('message', 'Event added succesfully');
@@ -99,7 +101,9 @@ class EventController extends Controller
         $event->start_date = $request['start_date'];
         $event->end_date = $request['end_date'];
         $event->description = $request['description'];
-        $this->add_graphics($event, $request);
+        if(isset($request['graphics'])) {
+            $this->add_graphics($event, $request);
+        }
         $event->save();
         return redirect()->back()->with('message', 'Event modified succesfully');
     }
