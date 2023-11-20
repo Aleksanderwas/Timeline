@@ -19,77 +19,15 @@
         </style>
         @vite(['resources/css/app.css','resources/js/app.js'])
     </head>
-    <body class="antialiased">
-    @if (Route::has('login'))
-        <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-            @guest()
-                {{--                            <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>--}}
-                {{--                        @else--}}
-                <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                @endif
-            @endguest
-        </div>
-    @endif
-        <div class="grid grid-cols-1 text-center pt-12">
-        <x-dashboard-elements>
-            <div><p class="text-xl text-center">{{ $event->title }}</p></div>
-        </x-dashboard-elements>
-        <div class="grid grid-cols-2 text-center">
-            <div>
+    <div class="p-20">
+        <!-- Container -->
+        <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+            @foreach($categories as $category)
                 <x-dashboard-elements>
-                    <p class="font-bold">Start date:</p> {{$event->start_date}}
+                    <a href="/categories/{{ $category->name }}">{{ $category->name }}</a>
                 </x-dashboard-elements>
-            </div>
-            <div>
-                <x-dashboard-elements>
-                    <p class="font-bold">End date:</p> {{$event->end_date}}
-                </x-dashboard-elements>
-            </div>
-        </div>
-        <x-dashboard-elements>
-            <div><p class="font-bold text-xl">Description:</p> {{$event->description}}</div>
-        </x-dashboard-elements>
-        <x-dashboard-elements>
-            <div class="text-center">
-                <p class="font-bold text-xl">Image:</p>
-                <img class="" src="{{ $event->graphics }}" alt="">
-            </div>
-        </x-dashboard-elements>
-        <div>
-            <x-dashboard-elements>
-                <p class="font-bold">Event category:</p> {{$event->category->name}}
-            </x-dashboard-elements>
-        </div>
-        <div>
-            <x-dashboard-elements>
-                <p class="font-bold">Created by:</p> {{$event->user->name}}
-            </x-dashboard-elements>
+            @endforeach
         </div>
     </div>
-    @auth
-        <form method="post" action="{{ route('events.modify', ['event' => $event]) }}" class="p-6">
-            @csrf
-            @method('post')
-            <x-primary-button >
-                Modify Event
-            </x-primary-button>
-        </form>
-        <form method="post" action="{{ route('events.destroy', ['id' => $event->id]) }}" class="p-6">
-            @csrf
-            @method('delete')
-            <x-danger-button>
-                Delete Event
-            </x-danger-button>
-        </form>
-    @endauth
-    <div class="p-6 lg:gap-8">
-        <x-primary-button >
-            <a href="{{ url()->previous() }}" class=""> Back </a>
-        </x-primary-button >
-    </div>
-    </body>
     </html>
 </x-app-layout>

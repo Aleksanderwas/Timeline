@@ -43,4 +43,9 @@
             </x-primary-button>
         </div>
     </form>
+        <div class="p-6 lg:gap-8">
+            <x-primary-button >
+                <a href="{{ url()->previous() }}" class=""> Back </a>
+            </x-primary-button >
+        </div>
 </x-app-layout>

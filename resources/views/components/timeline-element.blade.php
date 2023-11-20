@@ -13,14 +13,20 @@
                 <time class="font-caveat font-medium text-indigo-500">{{ $start_date }}</time>
             </div>
             <div class="text-slate-500 p-7">{{ $description }}</div>
+            <div>
+            <img class="" src="{{ $graphics }}" alt="">
+            </div>
             @auth()
                 <div class="p-3 text-right">
-                    <x-primary-button>
-                        Modify Event
-                    </x-primary-button>
-                    <x-danger-button>
-                        Delete Event
-                    </x-danger-button>
+                    <div>
+                    <form method="post" action="{{ route('events.destroy', ['id' => $id]) }}" class="p-6">
+                        @csrf
+                        @method('delete')
+                        <x-danger-button>
+                            Delete Event
+                        </x-danger-button>
+                    </form>
+                    </div>
                 </div>
             @endauth()
         </div>

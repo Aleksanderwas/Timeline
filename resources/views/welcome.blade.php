@@ -20,32 +20,31 @@
             @vite(['resources/css/app.css','resources/js/app.js'])
         </head>
         <body class="antialiased">
-                @if (Route::has('login'))
-                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                        @guest()
-{{--                            <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>--}}
-{{--                        @else--}}
-                            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+            @if (Route::has('login'))
+                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                    @guest()
+                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                            @endif
-                        @endguest
-                    </div>
-                @endif
-                <div class="p-20">
-                <!-- Container -->
-                    <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
-                        @foreach($events as $event)
-                           <x-timeline-element>
-                               <x-slot name="id">{{ $event->id }}</x-slot>
-                               <x-slot name="title">{{ $event->title }}</x-slot>
-                               <x-slot name="start_date">{{$event->start_date}}</x-slot>
-                               <x-slot name="description">{{$event->description}}</x-slot>
-                           </x-timeline-element>
-                        @endforeach
-                    </div>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                        @endif
+                    @endguest
                 </div>
+            @endif
+            <div class="p-20">
+            <!-- Container -->
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                    @foreach($events as $event)
+                       <x-timeline-element>
+                           <x-slot name="id">{{ $event->id }}</x-slot>
+                           <x-slot name="title">{{ $event->title }}</x-slot>
+                           <x-slot name="start_date">{{$event->start_date}}</x-slot>
+                           <x-slot name="description">{{$event->description}}</x-slot>
+                           <x-slot name="graphics">{{$event->graphics}}</x-slot>
+                       </x-timeline-element>
+                    @endforeach
+                </div>
+            </div>
         </body>
     </html>
 </x-app-layout>

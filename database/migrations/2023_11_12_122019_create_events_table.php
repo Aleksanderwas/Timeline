@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->text('description')->nullable();
-            $table->binary('graphics');
+            $table->binary('graphics')->nullable();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('created_by')->references('id')->on('users');
             $table->timestamps();
