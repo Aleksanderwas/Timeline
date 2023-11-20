@@ -17,10 +17,6 @@ use App\Http\Controllers\EventController;
 */
 
 Route::get('/', [EventController::class, 'index'])->name('home');
-
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware(['auth', 'verified'])->group(function (){
 Route::get('/dashboard', [EventController::class, 'index'])->name('dashboard');
 Route::get('/events/create', function () { return view('events.create'); })->name('events.create');
