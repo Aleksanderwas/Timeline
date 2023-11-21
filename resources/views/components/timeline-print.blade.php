@@ -14,7 +14,7 @@
         </div>
         <div class="text-slate-500 p-7">{{ $description }}</div>
         <div>
-            <img class="" src="{{ $graphics }}" alt="">
+{{--            <img class="" src="{{ $graphics }}" alt="">--}}
         </div>
     </div>
 </div>

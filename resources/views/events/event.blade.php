@@ -33,62 +33,69 @@
             @endguest
         </div>
     @endif
-        <div class="grid grid-cols-1 text-center pt-12">
-        <x-dashboard-elements>
-            <div><p class="text-xl text-center">{{ $event->title }}</p></div>
-        </x-dashboard-elements>
-        <div class="grid grid-cols-2 text-center">
-            <div>
-                <x-dashboard-elements>
-                    <p class="font-bold">Start date:</p> {{$event->start_date}}
-                </x-dashboard-elements>
-            </div>
-            <div>
-                <x-dashboard-elements>
-                    <p class="font-bold">End date:</p> {{$event->end_date}}
-                </x-dashboard-elements>
-            </div>
-        </div>
-        <x-dashboard-elements>
-            <div><p class="font-bold text-xl">Description:</p> {{$event->description}}</div>
-        </x-dashboard-elements>
-        <x-dashboard-elements>
-            <div class="text-center">
-                <p class="font-bold text-xl">Image:</p>
-                <img class="" src="{{ $event->graphics }}" alt="">
-            </div>
-        </x-dashboard-elements>
-        <div>
+    <div class="px-10 bg-gray-100">
+        <div class="grid grid-cols-1 text-center">
             <x-dashboard-elements>
-                <p class="font-bold">Event category:</p> {{$event->category->name}}
+                <div><p class="text-xl text-center font-bold">Title:</p><p class="text-xl text-center">{{ $event->title }}</p></div>
             </x-dashboard-elements>
-        </div>
-        <div>
-            <x-dashboard-elements>
-                <p class="font-bold">Created by:</p> {{$event->user->name}}
-            </x-dashboard-elements>
+                <div class="grid grid-cols-2 text-center">
+                    <div>
+                        <x-dashboard-elements>
+                            <p class="font-bold">Start date:</p> {{$event->start_date}}
+                        </x-dashboard-elements>
+                    </div>
+                    <div>
+                        <x-dashboard-elements>
+                            <p class="font-bold">End date:</p> {{$event->end_date}}
+                        </x-dashboard-elements>
+                    </div>
+                </div>
+                    <x-dashboard-elements>
+                        <div><p class="font-bold text-xl">Description:</p> {{$event->description}}</div>
+                    </x-dashboard-elements>
+                    <x-dashboard-elements>
+                        <div class="text-center">
+                            <p class="font-bold text-xl">Image:</p>
+                            <img class="" src="{{ $event->graphics }}" alt="">
+                        </div>
+                    </x-dashboard-elements>
+                <div>
+                    <x-dashboard-elements>
+                        <p class="font-bold">Event category:</p> {{$event->category->name}}
+                    </x-dashboard-elements>
+                </div>
+                <div>
+                    <x-dashboard-elements>
+                        <p class="font-bold">Created by:</p> {{$event->user->name}}
+                    </x-dashboard-elements>
+                </div>
         </div>
     </div>
-    @auth
-        <form method="post" action="{{ route('events.modify', ['event' => $event]) }}" class="p-6">
-            @csrf
-            @method('post')
-            <x-primary-button >
-                Modify Event
-            </x-primary-button>
-        </form>
-        <form method="post" action="{{ route('events.destroy', ['id' => $event->id]) }}" class="p-6">
-            @csrf
-            @method('delete')
-            <x-danger-button>
-                Delete Event
-            </x-danger-button>
-        </form>
-    @endauth
-    <div class="p-6 lg:gap-8">
-        <x-primary-button >
-            <a href="{{ url()->previous() }}" class=""> Back </a>
-        </x-primary-button >
+    <div class="grid grid-cols-2 text-center">
+        <div></div>
+        <div class="grid grid-cols-3 text-center">
+            @auth
+                <form method="post" action="{{ route('events.modify', ['event' => $event]) }}" class="p-6">
+                    @csrf
+                    @method('post')
+                    <x-primary-button >
+                        Modify Event
+                    </x-primary-button>
+                </form>
+                <form method="post" action="{{ route('events.destroy', ['id' => $event->id]) }}" class="p-6">
+                    @csrf
+                    @method('delete')
+                    <x-danger-button>
+                        Delete Event
+                    </x-danger-button>
+                </form>
+            @endauth
+            <div class="p-6 lg:gap-8">
+                <x-primary-button >
+                    <a href="{{ url()->previous() }}" class=""> Back </a>
+                </x-primary-button >
+            </div>
+        </div>
     </div>
     </body>
     </html>

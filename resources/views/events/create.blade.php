@@ -4,7 +4,7 @@
             {{ session()->get('message') }}
         </x-dashboard-elements>
     @endif
-    <form method="POST" action="{{ route('events.store') }}" class="p-16 m-10" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('events.store') }}" class="px-16 m-10" enctype="multipart/form-data">
         @csrf
         <div>
             <x-input-label for="Title" :value="__('Title')" />
@@ -43,9 +43,9 @@
             </x-primary-button>
         </div>
     </form>
-        <div class="p-6 lg:gap-8">
-            <x-primary-button >
-                <a href="{{ url()->previous() }}" class=""> Back </a>
-            </x-primary-button >
-        </div>
+    <div class="p-6 lg:gap-8">
+        <x-primary-button >
+            <a href="{{ url()->previous() }}" class=""> Back </a>
+        </x-primary-button >
+    </div>
 </x-app-layout>
